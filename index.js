@@ -80,20 +80,36 @@ async function run() {
       res.send(result);
     });
 
+    app.get('/manage-food/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = await foodCollection.find({ "uID": id });
+      const result = await query.toArray();
+      console.log(result);
+      res.send(result);
+    });
+
+    app.get('/manage-single-food/:id', async (req, res) => {
+      const id = req.params.id;
+      const objectId = new ObjectId(id);
+      const food = await reqFoodCollection.findOne({ _id: objectId });
+      console.log(food);
+      res.send(food);
+    });
+
     // User API
     app.post('/user', async(req, res) =>{
       const newUser = req.body;
       console.log(newUser)
       const result = await userCollection.insertOne(newUser);
       res.send(result);
-    })
+    });
 
     app.post('/request', async(req, res) =>{
       const newRequest = req.body;
       console.log(newRequest)
       const result = await reqFoodCollection.insertOne(newRequest);
       res.send(result);
-    })
+    });
 
     app.get('/request/:id', async (req, res) => {
       const id = req.params.id;
