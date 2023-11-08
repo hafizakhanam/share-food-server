@@ -105,6 +105,14 @@ async function run() {
       res.send(result);
     });
 
+    // Single user API
+    app.get('/user/:email', async (req, res) => {
+      const email = req.params.email;
+      const user = await userCollection.findOne({ email: email });
+      console.log(user);
+      res.send(user);
+    });
+
     app.post('/request', async(req, res) =>{
       const newRequest = req.body;
       console.log(newRequest)
