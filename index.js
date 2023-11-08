@@ -42,6 +42,7 @@ async function run() {
       res.send(result);
     })
 
+    // Single Food API
     app.get('/food/:id', async (req, res) => {
       const id = req.params.id;
       const objectId = new ObjectId(id);
