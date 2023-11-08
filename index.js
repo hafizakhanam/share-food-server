@@ -50,7 +50,7 @@ async function run() {
       console.log(food);
       res.send(food);
     });
-
+    // Delete Food API 
     app.delete('/food/:id', async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id)}
