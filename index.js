@@ -34,7 +34,7 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
     })
-
+    // Add Food API  
     app.post('/food', async(req, res) =>{
       const newFood = req.body;
       console.log(newFood)
