@@ -92,7 +92,7 @@ async function run() {
     app.get('/manage-single-food/:id', async (req, res) => {
       const id = req.params.id;
       const objectId = new ObjectId(id);
-      const food = await reqFoodCollection.findOne({ _id: objectId });
+      const food = await foodCollection.findOne({ _id: objectId });
       console.log(food);
       res.send(food);
     });
