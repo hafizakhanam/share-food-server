@@ -6,7 +6,14 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 
-app.use(cors());
+app.use(cors({
+  origin: [
+      // 'http://localhost:5173',
+      'https://good-food-dd418.web.app',
+      'http://localhost:5173'
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mnxfzlt.mongodb.net/?retryWrites=true&w=majority`;
@@ -23,7 +30,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    //await client.connect();
 
     const foodCollection = client.db("foodDB").collection("food");
     const reqFoodCollection = client.db("foodDB").collection("requested-food");
